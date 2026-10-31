@@ -13,11 +13,22 @@
 | [AyuGram4A](https://github.com/AyuGram/AyuGram4A) | `rewrite` — `7013145`, 28 Jul 2023 | Not archived, but branch is old | Keep as a source of feature ideas and selectively portable code; not a safe default base |
 | [exteraGram](https://github.com/exteraSquad/exteraGram) | `main` — `6f78031`, 2 Jun 2023 | Archived | UI/features reference only unless a newer maintained successor is found |
 
-## Telegram Android as a possible base
+## Telegram Android as the proposed base
 
 The official Telegram Android repository is actively maintained and its checked revision is current with version 13.1.1. Its build guide documents Android SDK 36 and NDK 27.2.12479018.
 
+### License compatibility
+
+Telegram's official applications page identifies Telegram for Android as **GNU GPL v. 2 or later**. Several checked Java source headers also say "GNU GPL v. 2 or later". This is important: GPL-2.0-or-later permits choosing GPLv3 for a combined work, unlike GPL-2.0-only. Bezgram's own `LICENSE` currently selects GPL-3.0.
+
+This does not automatically relicense every dependency or submodule in Telegram's source tree. Before importing the project, each submodule, library, binary, font, image, and other asset needs an inventory. A component marked GPL-2.0-only or otherwise incompatible must not be included in a GPL-3.0-only combined work without additional permission; replace it, exclude it where possible, or obtain the required permission. Preserve original copyright and license notices.
+
+References: [Telegram Apps — Android source license](https://telegram.org/apps/download?setln=en), [GNU GPL FAQ — GPLv2 and GPLv3 compatibility](https://www.gnu.org/licenses/gpl-faq.en.html).
+
+### Privacy and build audit
+
 It is **not automatically privacy-clean or Google-free**:
+
 - The main Gradle module includes Firebase Messaging, Firebase Datatransport, Firebase App Indexing, and a range of Google Play services dependencies. Each dependency must be mapped to a feature before keeping it.
 - The checked debug and release manifests explicitly set `firebase_analytics_collection_deactivated=true` and `google_analytics_adid_collection_enabled=false`.
 - The checked source search found Firebase Crashlytics usage in the HockeyApp application flavor. Bezgram should not include that flavor or crash-upload path without an explicit, documented decision.
@@ -67,6 +78,8 @@ Nagram is actively updated and documents built-in Material Design themes, many N
 
 - [Telegram Android master](https://github.com/DrKLO/Telegram/tree/master)
 - [Telegram Android checked commit](https://github.com/DrKLO/Telegram/commit/3de37c8cfb039452be7398909461da6288babf15)
+- [Telegram Apps page](https://telegram.org/apps/download?setln=en)
+- [GNU GPL compatibility FAQ](https://www.gnu.org/licenses/gpl-faq.en.html)
 - [Cherrygram reproducible-build branch](https://github.com/arsLan4k1390/Cherrygram/tree/main_Reproducible_Builds)
 - [Cherrygram checked commit](https://github.com/arsLan4k1390/Cherrygram/commit/f7d7a9a77af2c556b66f5251dbb09e1a663b676f)
 - [Nagram](https://github.com/NextAlone/Nagram)
