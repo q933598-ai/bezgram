@@ -6,19 +6,22 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 
 - [x] Create the public repository
 - [x] Document the product direction
+- [x] Compare active Android client candidates with the AyuGram / exteraGram source line
 - [ ] Add contribution, security, and privacy guidance
 - [ ] Add license and attribution files for the selected source base
 
-## Stage 1 — Upstream audit
+## Stage 1 — Finalise the upstream base
 
-- [ ] Pin an exact AyuGram4A commit as the initial reference
-- [ ] Review its Gradle / Android Gradle Plugin / JDK requirements
-- [ ] Identify required fork-specific classes and build-time configuration
-- [ ] Identify API credentials, Firebase / Crashlytics, maps, and signing requirements
-- [ ] Review all bundled libraries, assets, and license notices
-- [ ] Decide which upstream features are suitable for Bezgram
+- [x] Check the current Telegram Android source line
+- [x] Check the status and age of AyuGram4A and exteraGram
+- [x] Review a current fork that carries exteraGram / Telegram Monet lineage
+- [ ] Choose and pin the exact upstream commit
+- [ ] Review all required Git submodules and their licenses
+- [ ] Audit Firebase, Google Play services, analytics, crash reporting, and other external services
+- [ ] Identify required API credentials, build configuration, signing, and fork-specific integration points
+- [ ] Decide which AyuGram features can be ported safely and maintainably
 
-**Exit condition:** we can explain every required build setting and service, and know which values must be supplied by the Bezgram maintainer.
+**Exit condition:** the selected source can be built from a clean checkout, every submodule and third-party component is accounted for, and no upstream maintainer credentials or service configuration are reused.
 
 ## Stage 2 — First reproducible Android build
 
