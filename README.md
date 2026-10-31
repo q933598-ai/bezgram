@@ -56,11 +56,13 @@ Feature availability will depend on what can be maintained safely and reliably o
 
 ## Technical direction
 
-The first idea was to use AyuGram4A directly, but the source audit showed that its `rewrite` branch is from 2023, uses an older Android toolchain, and includes a separate proprietary submodule. exteraGram itself is archived. Those projects remain useful references for feature ideas, but they are not an ideal unreviewed foundation for a new Android client.
+The current preferred technical base is [the official Telegram Android source](https://github.com/DrKLO/Telegram). We will pin an exact commit, review its submodules and dependencies, then build a clean Bezgram debug version before redesigning the interface.
 
-The **current preferred base candidate** is [Cherrygram's `main_Reproducible_Builds` branch](https://github.com/arsLan4k1390/Cherrygram/tree/main_Reproducible_Builds). It follows the current Telegram Android source line and explicitly credits exteraGram and Telegram Monet. Bezgram can then bring over selected compatible features after security, license, and API-policy review.
+[Cherrygram](https://github.com/arsLan4k1390/Cherrygram) remains an important source of UI ideas and selected features, but it will not be copied wholesale: its current reproducible-build branch includes analytics, crash reporting, remote configuration, and extra external services that need a separate review.
 
-This is still a candidate, not an imported codebase. Cherrygram's build references Firebase and Google Play services; those dependencies and their data flows must be audited before choosing what to keep, replace, or remove. See [the upstream audit](docs/UPSTREAM_AUDIT.md).
+[AyuGram4A](https://github.com/AyuGram/AyuGram4A) and [exteraGram](https://github.com/exteraSquad/exteraGram) remain references for individual ideas and compatible code, subject to maintenance, source, license, and Telegram API review.
+
+See [the upstream audit](docs/UPSTREAM_AUDIT.md).
 
 ## Relevant documentation
 
@@ -68,13 +70,14 @@ This is still a candidate, not an imported codebase. Cherrygram's build referenc
 - [Upstream source audit](docs/UPSTREAM_AUDIT.md)
 - [Two-style interface architecture](docs/INTERFACE_ARCHITECTURE.md)
 - [Development roadmap](ROADMAP.md)
+- [Contribution and branch workflow](CONTRIBUTING.md)
 
 ## Relevant upstream projects
 
+- [Telegram for Android](https://github.com/DrKLO/Telegram)
 - [Cherrygram](https://github.com/arsLan4k1390/Cherrygram)
 - [AyuGram4A](https://github.com/AyuGram/AyuGram4A)
 - [exteraGram](https://github.com/exteraSquad/exteraGram)
-- [Telegram for Android](https://github.com/DrKLO/Telegram)
 
 Bezgram is an independent, unofficial third-party client. It is not affiliated with or endorsed by Telegram.
 
@@ -84,6 +87,8 @@ Bezgram is an independent, unofficial third-party client. It is not affiliated w
 - [x] Product direction documented
 - [x] First upstream comparison completed
 - [x] Privacy and security requirements documented
+- [x] Initial project license file added (GPL-3.0)
+- [x] `test` branch established as the development branch
 - [ ] Select and pin the final upstream source revision
 - [ ] Audit build requirements, licenses, submodules, and third-party services
 - [ ] Import and build the Android project
@@ -100,8 +105,12 @@ Build instructions will be added after the Android source tree and required conf
 
 ## Contributing
 
-Contributions, bug reports, and design discussions are welcome. Please read the upstream licenses and notices before reusing code or assets. Changes derived from GPL-licensed code must preserve the applicable copyright and license notices.
+Contributions, bug reports, and design discussions are welcome. Work on the `test` branch first; keep `main` for changes that have been reviewed and tested. Please read upstream licenses and notices before reusing code or assets.
 
 ## License
 
-The final license and attribution files will be committed alongside the selected source base. The preferred baseline is GPL-2.0-or-later; third-party components and assets may have separate licenses, which must be documented individually.
+Bezgram's own project code is licensed under **GNU GPL v3.0** (see [LICENSE](LICENSE)).
+
+Telegram's official Android application is published as **GNU GPL version 2 or later**. The "or later" permission allows eligible Telegram code to be used under GPLv3. Individual upstream files, submodules, libraries, and assets still need to be checked separately; a component marked GPL-2.0-only or carrying another incompatible license must not be silently included in a GPL-3.0-only combined work.
+
+Preserve all applicable upstream copyright notices and license texts. See [GNU's GPL compatibility FAQ](https://www.gnu.org/licenses/gpl-faq.en.html) and the [upstream audit](docs/UPSTREAM_AUDIT.md).
