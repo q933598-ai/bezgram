@@ -82,10 +82,4 @@ See [ROADMAP.md](ROADMAP.md) for the development stages.
 
 Build instructions will be added after the Android source tree and required configuration have been established. Do not use another project's API keys, signing keys, Firebase configuration, or other private credentials in a Bezgram build.
 
-## Contributing
 
-Contributions, bug reports, and design discussions are welcome. Please read the upstream licenses and notices before reusing code or assets. Changes derived from GPL-licensed code must preserve the applicable copyright and license notices.
-
-## License
-
-The final license and attribution files will be committed alongside the selected source base. The preferred baseline is GPL-2.0-or-later; third-party components and assets may have separate licenses, which must be documented individually.
