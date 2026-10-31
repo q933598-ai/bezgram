@@ -46,10 +46,15 @@ Feature availability will depend on what can be maintained safely and reliably o
 
 ## Technical direction
 
-The initial codebase candidate is [AyuGram4A](https://github.com/AyuGram/AyuGram4A), an Android client derived from exteraGram and distributed under GPL-2.0-or-later. Its upstream README documents additional setup work for independent forks, including implementation-specific classes and replacement of service configuration. We will audit that setup before importing or building the code.
+The first idea was to use AyuGram4A directly, but the source audit showed that its `rewrite` branch is from 2023, uses an older Android toolchain, and includes a separate proprietary submodule. exteraGram itself is archived. Those projects remain important references for features and UI ideas, but they are not an ideal unreviewed foundation for a new Android client.
+
+The **current preferred base candidate** is [Cherrygram's `main_Reproducible_Builds` branch](https://github.com/arsLan4k1390/Cherrygram/tree/main_Reproducible_Builds). It follows the current Telegram Android source line and explicitly credits exteraGram and Telegram Monet. Bezgram can then bring over selected AyuGram features after checking compatibility and preserving all required notices.
+
+This is still a candidate, not an imported codebase. Cherrygram's build also references Firebase and Google Play services; those dependencies and their data flows must be audited before choosing what to keep, replace, or remove. See [the upstream audit](docs/UPSTREAM_AUDIT.md).
 
 Relevant upstream projects:
 
+- [Cherrygram](https://github.com/arsLan4k1390/Cherrygram)
 - [AyuGram4A](https://github.com/AyuGram/AyuGram4A)
 - [exteraGram](https://github.com/exteraSquad/exteraGram)
 - [Telegram for Android](https://github.com/DrKLO/Telegram)
@@ -60,7 +65,8 @@ Bezgram is an independent, unofficial third-party client. It is not affiliated w
 
 - [x] Public repository created
 - [x] Product direction documented
-- [ ] Select and pin the upstream source revision
+- [x] First upstream comparison completed
+- [ ] Select and pin the final upstream source revision
 - [ ] Audit build requirements, licenses, and third-party services
 - [ ] Import and build the Android project
 - [ ] Establish Bezgram application ID, branding, and build variants
@@ -82,4 +88,4 @@ Contributions, bug reports, and design discussions are welcome. Please read the 
 
 ## License
 
-The licensing and attribution files will be finalised alongside the first imported source code. The planned Android base is GPL-2.0-or-later; third-party components and assets may have separate licenses, which must be documented individually.
+The final license and attribution files will be committed alongside the selected source base. The preferred baseline is GPL-2.0-or-later; third-party components and assets may have separate licenses, which must be documented individually.
