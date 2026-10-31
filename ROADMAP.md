@@ -8,8 +8,10 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 - [x] Document the product direction
 - [x] Compare active Android client candidates with the AyuGram / exteraGram source line
 - [x] Document privacy and security requirements
-- [ ] Add contribution, security-reporting, and privacy guidance
-- [ ] Add license and attribution files for the selected source base
+- [x] Add the initial project license file (GPL-3.0)
+- [x] Create the `test` development branch and document the branch workflow
+- [ ] Complete contribution, security-reporting, and privacy guidance
+- [ ] Complete upstream attribution and third-party license inventory
 
 ## Stage 1 — Finalise the upstream base
 
