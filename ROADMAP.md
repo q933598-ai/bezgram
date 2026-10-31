@@ -7,7 +7,8 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 - [x] Create the public repository
 - [x] Document the product direction
 - [x] Compare active Android client candidates with the AyuGram / exteraGram source line
-- [ ] Add contribution, security, and privacy guidance
+- [x] Document privacy and security requirements
+- [ ] Add contribution, security-reporting, and privacy guidance
 - [ ] Add license and attribution files for the selected source base
 
 ## Stage 1 — Finalise the upstream base
@@ -19,9 +20,9 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 - [ ] Review all required Git submodules and their licenses
 - [ ] Audit Firebase, Google Play services, analytics, crash reporting, and other external services
 - [ ] Identify required API credentials, build configuration, signing, and fork-specific integration points
-- [ ] Decide which AyuGram features can be ported safely and maintainably
+- [ ] Confirm Telegram API policy compatibility for every planned feature
 
-**Exit condition:** the selected source can be built from a clean checkout, every submodule and third-party component is accounted for, and no upstream maintainer credentials or service configuration are reused.
+**Exit condition:** the selected source can be built from a clean checkout, every submodule and third-party component is accounted for, no upstream credentials or service configuration are reused, and the selected features comply with Telegram API terms.
 
 ## Stage 2 — First reproducible Android build
 
@@ -40,6 +41,7 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 - [ ] Apply Bezgram name, package identity, and application metadata
 - [ ] Add an About screen with upstream credits and license information
 - [ ] Establish a consistent icon and typography system
+- [ ] Add a clear unofficial-client notice and cloud-chat / Secret Chat explanation
 
 ## Stage 4 — Two UI systems
 
@@ -53,25 +55,42 @@ This roadmap describes the intended order of work. A checkbox means the work is 
 
 **Exit condition:** switching styles changes the component presentation across the app without changing application behavior or user data.
 
-## Stage 5 — Features and polish
+## Stage 5 — Privacy and security implementation
 
-- [ ] Audit existing AyuGram / exteraGram features for compatibility
+- [ ] Remove analytics and advertising SDKs from the chosen base
+- [ ] Disable / remove third-party crash upload in the initial release
+- [ ] Audit and document every network endpoint and external service
+- [ ] Minimise permissions and request them only when needed
+- [ ] Add tests for logs, permissions, local storage, and data deletion
+- [ ] Make any local message archive opt-in, protected, and clearable
+- [ ] Provide a no-Google-services build where technically feasible
+- [ ] Verify that no undocumented endpoint receives user data
+- [ ] Re-check Telegram API terms before each major release
+
+**Exit condition:** privacy requirements are supported by source review, dependency inspection, and network tests, not just documentation.
+
+## Stage 6 — Features and polish
+
+- [ ] Audit existing AyuGram / exteraGram features for compatibility and policy compliance
 - [ ] Select the first Bezgram feature set
 - [ ] Add feature toggles with clear descriptions
 - [ ] Review permissions, background work, notifications, and battery use
 - [ ] Add accessibility checks and small-screen / large-screen testing
 - [ ] Test upgrades and settings migration
 
-## Stage 6 — Releases
+## Stage 7 — Releases
 
-- [ ] Add CI for debug builds and automated checks
-- [ ] Document reproducible release builds
-- [ ] Publish checksums and source links with each release
+- [ ] Add public CI for debug builds and automated checks
+- [ ] Document release builds and their required configuration
+- [ ] Publish checksums, source commit IDs, and dependency inventory with each release
 - [ ] Document signing-key ownership and backup expectations
-- [ ] Publish a changelog and security reporting process
+- [ ] Establish a private security reporting channel
+- [ ] Publish a changelog and known-limitations list
 
 ---
 
 ## Milestone 1
 
 The first meaningful milestone is **a clean, reproducible Bezgram debug APK** built from this repository with Bezgram-owned configuration. UI redesign comes after the foundation builds reliably.
+
+A privacy claim is not considered complete until it has been checked against the packaged APK and observed network behavior.
